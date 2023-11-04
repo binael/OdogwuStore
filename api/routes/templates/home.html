@@ -8,9 +8,9 @@
 		<meta name="author" content="Binael Nchekwube">
 		<title>OdogwuStore</title>
 		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/x-icon" href="./images/favicon.png">
+		<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.png') }}">
 		<!-- Custom stylesheet -->
-		<link rel="stylesheet" type="text/css" href="./styles/home.css">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/home.css') }}">
 		<!-- Boxicons  -->
 		<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 		<!-- Swiper Js for auto image slider-->
@@ -77,7 +77,7 @@
 					<!-- Slider main container -->
 					<div class="swiper">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide"><a><img src="./images/Ecommerce_images/below_5k.jpg" alt="Below 5K Products"></a></div>
+							<div class="swiper-slide"><a><img src="{{ url_for('static', filename='images/Ecommerce_images/below_5k.jpg') }}" alt="Below 5K Products"></a></div>
 							<div class="swiper-slide"><a><img src="./images/Ecommerce_images/electronics.webp" alt="Electronics"></a></div>
 							<div class="swiper-slide"><a><img src="./images/Ecommerce_images/phones2.png" alt="Phones"></a></div>
 							<div class="swiper-slide"><a><img src="./images/Ecommerce_images/fashion.jpg" alt="Fashion"></a></div>
