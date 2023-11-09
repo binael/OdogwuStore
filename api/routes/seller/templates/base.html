@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="E-Commerce Website">
+		<meta keywords="shop, purchase, pay">
+		<meta name="author" content="Binael Nchekwube">
+		<!-- Block for title-->
+		<title>{% block title %}{% endblock %}</title>
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('.static', filename='images/favicon.png') }}">
+		<!-- Custom stylesheet -->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/base.css') }}">
+		<!-- Boxicons  -->
+		<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+		<!-- Swiper Js for auto image slider-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+		<!-- Custom CSS Block-->
+		{% block css %}{% endblock %}
+	</head>
+	<body>
+		<!-- header begins here-->
+
+		<!-- header ends-->
+
+		<!-- main body of the website -->
+		<main>
+			{% block main %}{% endblock %}
+		</main>
+		<!-- main body ends-->
+
+		<!-- footer begins-->
+		<footer>
+			<section class="connect-us">
+				<h3>Connect With Us</h3>
+				<div class="social-media">
+					<a href="https://twitter.com/binaelnchekwube"><i class='bx bxl-twitter'></i></a>
+					<a href="https://web.facebook.com/nbinael"><i class='bx bxl-facebook-square'></i></i></a>
+					<a href="https://www.instagram.com/nbinael/"><i class='bx bxl-instagram-alt'></i></a>
+					<a href="https://wa.link/plwc0u"><i class='bx bxl-whatsapp-square'></i></a>
+					<a href="https://www.linkedin.com/in/binael-nchekwube-777001109"><i class='bx bxl-linkedin-square' ></i></a>
+				</div>
+			</section>
+			<section class="about-us">
+				<h3>About Us</h3>
+				<div class="about info">
+					<a class="faq" title="Frequently Asked Questions">FAQ</a>
+					<a class="about">About Us</a>
+				</div>
+			</section>
+			<section class="partner-us">
+				<h3>Partner With Us</h3>
+				<div class="partner info">
+					<a href="" class="partner-seller">Seller Partner</a>
+					<a href="" class="partner-logistics">Logistics Partner</a>
+					<a href="" class="markerter">Markerting Partner</a>
+				</div>
+			</section>
+			<section class="subscribe">
+				<h3>Subscribe To Our NewsLetter</h3>
+				<form action="" class="subscription">
+					<input type="text" placeholder="Email" name="suscriber" class="subscriber">
+					<input type="submit" value="Submit" class="subscriber-submit">
+				</form>
+			</section>
+		</footer>
+		<!-- footer ends-->
+
+		<!-- jQuery cdn link-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<!--Custom js script link-->
+		<script src="{{ url_for('.static', filename='js/base.js') }}"></script>
+		{% block js %}{% endblock %}
+	</body>
+</html>
