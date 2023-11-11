@@ -1,0 +1,33 @@
+{% extends 'base_template.html' %}
+
+{% block title %} o-seller Login {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/login.css') }}">
+{% endblock %}
+
+{% block userName %}{% endblock %}
+{% block userOption %}{% endblock %}
+{% block user_filter %}{% endblock %}
+
+{% block main %}
+<form action="/o-seller/login" class="login-form" id="login-form" method="POST">
+	{{ form.csrf_token }}
+	<h1 class="header-text">LOGIN TO YOUR ODOGWUSELLER ACCOUNT</h1>
+	<div class="login">
+		<label for="{{ form.email.id }}" class="form-text">EMAIL ADDRESS</label>
+		{{ form.email(class="form-control") }}
+		{% for error in form.email.error %}
+		<p style="color: red;">{{ error }}</p>
+		{% endfor %}
+	</div>
+	<div class="login">
+		<label for="{{ form.password.id }}" class="form-text">PASSWORD</label>
+		{{ form.password(class="form-control") }}
+		{% for error in form.password.error %}
+		<p style="color: red;">{{ error }}</p>
+		{% endfor %}
+	</div>
+	<a href="/o-seller/password_reset" class="forgot-password">Forgot Password?</a>
+	<button type="submit" form="login-form" value="Submit" class="login-submit">Submit</button>
+{% endblock %}

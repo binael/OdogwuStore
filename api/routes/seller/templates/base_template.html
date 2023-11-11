@@ -21,9 +21,57 @@
 	</head>
 	<body>
 		<!-- header begins here-->
+		<header class="other-services">
+			<a href="#o-pay"><i class="bx bx-money"></i> O-Pay</a>
+			<a href="#o-logistics"><i class="bx bx-bus"></i>O-Logistics</a>
+			<a href="/"><i class='bx bxs-store-alt'></i>O-Store</a>
+			<a href="#o-food"><i class="bx bx-bowl-rice"></i>O-Food</a>
+		</header>
+		<header class="header">
+			<section class="main-header">
+				<a class="logo" href="/o-seller">Odogwu<span>S</span>eller  <i class='bx bxs-home' ></i></a>
+				{% block userName %}
+					<a class="username" href=""><i class='bx bxs-user'></i> Hi, {{ firstname }}</a>
+				{% endblock %}
+				<div class="user-box">
+					{% block userOption %}
+						<a>Add Product</a>
+						<a>Recently Added</a>
+						<a href="#help" class="help"><i class='bx bxs-help-circle' ></i> Help <i class='bx bxs-chevron-down'></i></a>
+						<a href="#logout" class="logout"><i class='bx bx-log-out' ></i> Logout</a>
+					{% endblock %}
+					{% block non_user %}
+					<a class="sign-in" href="/o-seller/login"> Sign In</a>
+					<a class="sign-up" href="/o-seller/> Sign Up</a>
+					<a> Guides to Selling</a>
+					<a href="#help" class="help"><i class='bx bxs-help-circle' ></i> Help <i class='bx bxs-chevron-down'></i></a>
+					{% endblock %}
+				</div>
+			</section>
 
+			{% block user_filter %}
+			<section class="filter">
+				<form action="/o-seller" class="search-form" id="search-form" method="POST">
+					{{ form.csrf_token}}
+					<div class="all-category">
+						<label for="{{ form.category.id }}">Category: </label>
+						{{ form.category(class="category-select") }}
+						</select>
+					</div>
+					<div class="type">
+						<label for="{{ form.sub_category.id }}">Sub Category: </label>
+						{{ form.sub_category(class="sub_category", placeholder="Phone Android") }}
+					</div>
+					<div class="product-search">
+						<label for="{{ form.product.id }}">Product Name: </label>
+						{{ form.product(class="product", placeholder="Samsung galaxy s5") }}
+                    </div>
+					<button type="submit" form="search-form" value="Submit" class="submit">Submit</button>
+				</form>
+			</section>
+			{% endblock %}
+		</header>
 		<!-- header ends-->
-
 		<!-- main body of the website -->
 		<main>
 			{% block main %}{% endblock %}
