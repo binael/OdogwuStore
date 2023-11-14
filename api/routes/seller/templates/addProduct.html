@@ -3,7 +3,116 @@
 {% block title %} o-sellers {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/home.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/addProduct.css') }}">
 {% endblock %}
 
 {% block non_user %}{% endblock %}
+{% block user_filter %}{% endblock %}
+
+{% block main %}
+<div class="product">
+	<form class="add-product" method="POST" action="{{ url_for('seller.add') }}" enctype="multipart/form-data">
+		{{ add_product_form.csrf_token }}
+
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div class="flashes">
+					<a class="flash-link flash-home" href=""><i class='bx bxs-caret-left-square'></i><p>Go to Home</p></a>
+					<ul>
+						{% for message in messages %}
+							<p class="flash-text">Product Successfully Added</p>
+						{% endfor %}
+					</ul>
+					<a class="flash-link flash-product" href=""><p>Check Product</p><i class='bx bxs-caret-right-square'></i></a>
+				</div>
+			{% endif %}
+		{% endwith %}
+
+		<div class="product-detail">
+			<section>
+				<div class="form-section product-category">
+					<label for="{{ add_product_form.category.id }}" class="form-text">PRODUCT CATEGORY</label>
+					{{ add_product_form.category(class="form-control") }}
+					<ul>
+						{% for error in add_product_form.category.errors %}
+							<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="form-section product-sub_category">
+					<label for="{{ add_product_form.sub_category.id }}" class="form-text">PRODUCT SUB-CATEGORY</label>
+					{{ add_product_form.sub_category(class="form-control", placeholder="Kitchen Refridgerators Cooling") }}
+					<ul>
+						{% for error in add_product_form.sub_category.errors %}
+							<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="form-section product-name">
+					<label for="{{ add_product_form.name.id }}" class="form-text">PRODUCT NAME</label>
+					{{ add_product_form.name(class="form-control", placeholder="Thermocool Fridge Model 34573") }}
+					<ul>
+						{% for error in add_product_form.name.errors %}
+							<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</section>
+			<section>
+				<div class="form-section product-stock">
+					<label for="{{ add_product_form.total_stock.id }}" class="form-text">QUANTITY IN STOCK</label>
+					{{ add_product_form.total_stock(class="form-control", placeholder="0") }}
+					<ul>
+						{% for error in add_product_form.total_stock.errors %}
+							<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="form-section product-price">
+					<label for="{{ add_product_form.price.id }}" class="form-text">PRODUCT PRICE</label>
+					<div class="product-price-box">
+						{{ add_product_form.price(class="form-control price-control", placeholder="0.00") }}
+						{{ add_product_form.currency(class="product-currency") }}
+					</div>
+					<ul>
+						{% for error in add_product_form.price.errors %}
+							<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="form-section product-discount">
+					<label for="{{ add_product_form.discount.id }}" class="form-text">PERCENTAGE DISCOUNT</label>
+					{{ add_product_form.discount(class="form-control") }}
+					<ul>
+						{% for error in add_product_form.discount.errors %}
+							<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</section>
+		</div>
+
+		<section class="product-description-box">
+			<label for="{{ add_product_form.description.id }}" class="form-text">PRODUCT DESCRIPTION</label>
+            {{ add_product_form.description(class="form-control product-description", placeholder="Write a description for the product") }}
+            <ul>
+                {% for error in add_product_form.description.errors %}
+                    <li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+		</section>
+
+		<section class="product-image">
+			<label for="{{ add_product_form.image.id }}" class="form-text product-image-text">UPLOAD IMAGE</label>
+            {{ add_product_form.image(class="product-image-control") }}
+            <ul>
+                {% for error in add_product_form.image.errors %}
+                    <li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+		</section>
+
+		<button type="submit" form="login-form" value="Submit" class="form-control product-submit">Submit</button>
+	</form>
+</div>
+{% endblock %}

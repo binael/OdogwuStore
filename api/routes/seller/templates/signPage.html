@@ -3,8 +3,177 @@
 {% block title %} o-seller Login {% endblock %}
 
 {% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/signup.css') }}">
 {% endblock %}
 
 {% block userName %}{% endblock %}
 {% block userOption %}{% endblock %}
 {% block user_filter %}{% endblock %}
+
+
+{% block main %}
+<form action="/o-seller/sign_up" class="signup-form" id="signup-form" method="POST" enctype="multipart/form-data">
+	{{ form.csrf_token }}
+	{{ form.address.csrf_token }}
+	{{ form.password.csrf_token }}
+	<h1>CREATE YOUR ODOGWU<span>S</span>ELLER ACCOUNT</h1>
+
+	<div class="signup section-detail">
+		<p class="detail">Login Information</p>
+	</div>
+	<div class="signup">
+		<label for="{{ form.email.id }}" class="form-text">EMAIL ADDRESS</label>
+		{{ form.email(class="form-control", placeholder="Email Address") }}
+		<ul>
+			{% for error in form.email.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="signup">
+		<label for="{{ form.password.password.id }}" class="form-text">PASSWORD</label>
+		<div class="password-control">
+			{{ form.password.password(class="form-control", placeholder="Password") }}
+			<span class="toggle-password">SHOW</span>
+		</div>
+		<ul>
+			{% for error in form.password.password.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="signup">
+		<label for="{{ form.password.confirm.id }}" class="form-text">CONFIRM PASSWORD</label>
+		<div class="password-control">
+			{{ form.password.confirm(class="form-control", placeholder="Password") }}
+			<span class="toggle-password">SHOW</span>
+		</div>
+		<ul>
+			{% for error in form.password.confirm.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div class="signup section-detail">
+		<p class="detail">Personal Information</p>
+	</div>
+	<div class="signup multiple-box">
+		<div class="username">
+			<label for="{{ form.firstname.id }}" class="form-text">FIRST NAME</label>
+			{{ form.firstname(class="form-control", placeholder="First Name") }}
+			<ul>
+				{% for error in form.firstname.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="username">
+			<label for="{{ form.lastname.id }}" class="form-text">LAST NAME</label>
+			{{ form.lastname(class="form-control", placeholder="Last Name") }}
+			<ul>
+				{% for error in form.lastname.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="signup">
+		<label for="{{ form.address.phone.id }}" class="form-text">PHONE NUMBER</label>
+		{{ form.address.phone(class="form-control", placeholder="+44858...") }}
+		<ul>
+			{% for error in form.address.phone.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div class="signup section-detail">
+		<p class="detail">Company Information</p>
+	</div>
+	<div class="signup">
+		<label for="{{ form.name.id }}" class="form-text">COMPANY NAME</label>
+		{{ form.name(class="form-control", placeholder="Company Name") }}
+		<ul>
+			{% for error in form.name.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="signup">
+		<label for="{{ form.website.id }}" class="form-text">WEBSITE</label>
+		{{ form.website(class="form-control", placeholder="https://www.companyaddress.com") }}
+		<ul>
+			{% for error in form.website.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="signup multiple-box">
+		<div class="address">
+			<label for="{{ form.address.country.id }}" class="form-text">COUNTRY</label>
+			{{ form.address.country(class="form-control") }}
+			<ul>
+				{% for error in form.address.country.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="address">
+			<label for="{{ form.address.state.id }}" class="form-text">STATE</label>
+			{{ form.address.state(class="form-control", placeholder="State") }}
+			<ul>
+				{% for error in form.address.state.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="address">
+			<label for="{{ form.address.city.id }}" class="form-text">CITY</label>
+			{{ form.address.city(class="form-control", placeholder="City") }}
+			<ul>
+				{% for error in form.address.city.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="signup">
+		<label for="{{ form.address.street.id }}" class="form-text">STREET</label>
+		{{ form.address.street(class="form-control", placeholder="Street Number, Street Name...") }}
+		<ul>
+			{% for error in form.address.street.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="signup">
+		<label for="{{ form.bio.id }}" class="form-text">BIO / DESCRIPTION</label>
+		{{ form.bio(class="form-control bio", placeholder="A description about the company") }}
+		<ul>
+			{% for error in form.bio.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="signup">
+		<label for="{{ form.image.id }}" class="form-text">UPLOAD IMAGE</label>
+		{{ form.image(class="form-control image-file", placeholder="Upload Image") }}
+		<ul>
+			{% for error in form.image.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<button type="submit" form="signup-form" value="Submit" class="signup-submit">Submit</button>
+	<div class = "signup form-login">
+		<a href="/o-seller/login" class="form-link">Have an Account? Login</a>
+	</div>
+</form>
+
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('.static', filename='js/signup.js') }}"></script>
+{% endblock %}

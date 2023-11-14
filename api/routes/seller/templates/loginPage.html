@@ -13,21 +13,44 @@
 {% block main %}
 <form action="/o-seller/login" class="login-form" id="login-form" method="POST">
 	{{ form.csrf_token }}
-	<h1 class="header-text">LOGIN TO YOUR ODOGWUSELLER ACCOUNT</h1>
+	<h1>LOGIN TO YOUR ODOGWU<span>S</span>ELLER ACCOUNT</h1>
+	{% if name %}
+	<div class="login error">
+		<p class="error-msg">Invalid Email or Password</p>
+	</div>
+	{% endif %}
 	<div class="login">
 		<label for="{{ form.email.id }}" class="form-text">EMAIL ADDRESS</label>
-		{{ form.email(class="form-control") }}
-		{% for error in form.email.error %}
-		<p style="color: red;">{{ error }}</p>
-		{% endfor %}
+		{{ form.email(class="form-control", placeholder="Email Address") }}
+		<ul>
+			{% for error in form.email.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
 	</div>
 	<div class="login">
 		<label for="{{ form.password.id }}" class="form-text">PASSWORD</label>
-		{{ form.password(class="form-control") }}
-		{% for error in form.password.error %}
-		<p style="color: red;">{{ error }}</p>
-		{% endfor %}
+		{{ form.password(class="form-control", placeholder="Password") }}
+		<span class="toggle-password" id="toggle-password">SHOW</span>
+		<ul>
+			{% for error in form.password.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
 	</div>
-	<a href="/o-seller/password_reset" class="forgot-password">Forgot Password?</a>
+	<div class="login remember-me">
+		<label>{{ form.remember_me(class="remember") }}   Remember me</label>
+	</div>
+	<div class="login forgot-password">
+		<a href="{{ url_for('seller_auth.forgot_password') }}" class="form-link">Forgot Password?</a>
+	</div>
 	<button type="submit" form="login-form" value="Submit" class="login-submit">Submit</button>
+	<div class = "login form-sign-up">
+		<a href="{{ url_for('seller_auth.sign_up') }}" class="form-link">Not a Seller? Sign Up</a>
+	</div>
+</form>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('.static', filename='js/login.js') }}"></script>
 {% endblock %}

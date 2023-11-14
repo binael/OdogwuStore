@@ -2,6 +2,7 @@
 """
 
 import os
+from datetime import timedelta
 
 
 class Configuration:
@@ -13,6 +14,7 @@ class Configuration:
 
     # General Configurations
     CSRF_ENABLED = True
+    PERMANENT_SESSION_LIFETIME = timedelta(days=30)
 
     # Key Configurations
     SECRET_KEY = os.environ.get("SECRET_KEY")

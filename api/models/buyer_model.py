@@ -13,12 +13,14 @@ class Buyer(UserMixin, BaseModel):
     A class for database product table
     """
     __tablename__ = "buyer"
-    email = db.Column(db.String(80), unique=True, nullable=False)
+    id = db.Column(db.String(40), primary_key=True, nullable=False, default=str(uuid4()))
     firstname = db.Column(db.String(120), unique=True, nullable=False)
     lastname = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(60), nullable=False)
-    phone = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(256), nullable=False)
+    phone = db.Column(db.String(30), unique=True, nullable=False)
     address = db.Column(db.String(240))
+    image = db.Column(db.String(240))
 
     favorites = db.relationship("Favorite", backref="buyers", lazy=True)
     purchases = db.relationship("Purchase", backref="buyers", lazy=True)

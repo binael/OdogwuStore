@@ -1,0 +1,176 @@
+.product {
+	width: 70%;
+	margin: 5% auto;
+	display: block;
+	background-color: rgba(85, 190, 111, 0.3);
+	height: fit-content;
+	padding-top: 0.1%;
+	padding-bottom: 1%;
+}
+
+.add-product {
+	margin: 4% auto;
+	display: block;
+	align-items: center;
+	width: 90%;
+}
+
+.flashes {
+	background-color: var(--bg-color);
+	width: 100%;
+	height: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 15px;
+	position: relative;
+}
+
+.flash-link {
+	position: absolute;
+	height: 100%;
+	color: white;
+	border-radius: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: rgba(65, 80, 80, 0.9);
+	width: 15%;
+}
+
+.flash-home {
+	left: 0;
+	/* padding-right: 15px;
+	padding-left: 15px; */
+	padding-right: 1.8%;
+	padding-left: 1.8%;
+}
+
+.flash-product {
+	right: 0;
+	padding-left: 3%;
+}
+
+.flash-text {
+	color: white
+}
+
+.flash-link p {
+	width: 50%;
+	font-size: 0.7rem;
+}
+
+.flash-link i {
+	width: 50%;
+	font-size: 2rem;
+	position: relative;
+	animation-duration: 2s;
+	animation-delay: 0.4s;
+	animation-iteration-count: 3;
+}
+
+.flash-home i {
+	animation-name: home-animation
+}
+
+.flash-product i {
+	animation-name: product-animation
+}
+
+@keyframes product-animation {
+	from {left:0%;}
+	to {left:20%;}
+}
+
+@keyframes home-animation {
+	from {right:0%;}
+	to {right:18%;}
+}
+
+
+.product-detail {
+	width: 100%;
+	margin-top: 4%;
+	margin-bottom: 4%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.product-detail section {
+	display: block;
+	width: 45%;
+}
+
+.form-section {
+	display: block;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.product-category, .product-stock {
+	margin-top: 0;
+}
+
+.form-text {
+	display: block;
+	font-size: 0.75rem;
+}
+
+.form-control {
+	width: 100%;
+	height: 2.2rem;
+	border-radius: 15px;
+	padding-left: 10px;
+	border: 1px solid black;
+}
+
+.product-price-box {
+	position: relative;
+	width: 100%;
+}
+
+.product-currency {
+	position: absolute;
+	left: 0;
+	height: 2.2rem;
+	width: 45%;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+.price-control {
+	padding-left: 47%;
+}
+
+.product-description-box {
+	width: 100%;
+	margin-top: -3%;
+	margin-bottom: 2%;
+}
+
+.product-description {
+	height: 6rem;
+	border-radius: 9px;
+	margin-top: 0;
+	text-align: justify;
+	padding: 8px;
+}
+
+.product-image {
+	margin-bottom: 3%;
+}
+
+.product-image-control {
+	display: inline;
+	padding: 0;
+	cursor: pointer;
+}
+
+.product-submit {
+	cursor: pointer;
+	background-color: var(--bg-color);
+	color: white;
+	font-size: larger;
+	border: 0;
+}
