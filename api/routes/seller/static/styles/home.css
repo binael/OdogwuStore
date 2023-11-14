@@ -9,7 +9,7 @@ main {
 	display: flex;
 	justify-content:space-between;
 	align-items: center;
-	height: 75vh;
+	height: 500px;
 	margin-top: 20px;
 }
 

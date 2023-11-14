@@ -9,7 +9,7 @@ main {
 	display: flex;
 	justify-content:space-between;
 	align-items: center;
-	height: 75vh;
+	height: 470px;
 	margin-top: 20px;
 }
 
@@ -84,7 +84,7 @@ main {
 /* Start of Style for item pictures section */
 .item-pictures {
 	width: 100%;
-	height: 70vh;
+	height: 470px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 	display: flex;
 	flex-wrap: wrap;
@@ -130,7 +130,7 @@ main {
 .group-box {
 	position: relative;
 	width: 100%;
-	height: 45vh;
+	height: 300px;
 	background-color: rgba(253, 68, 0, 0.06);
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 	margin-top: 40px;
@@ -150,7 +150,7 @@ main {
 
 .group-box div {
 	width: 100%;
-	height: 40vh;
+	height: 270px;
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
