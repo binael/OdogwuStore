@@ -1,5 +1,6 @@
 """_summary_
 """
+from PIL import Image
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
@@ -7,7 +8,7 @@ from wtforms import (StringField, IntegerField, TelField,
                      TextAreaField, DecimalField, SearchField,
                      SelectField, EmailField, PasswordField,
                      BooleanField, FormField)
-from wtforms.validators import InputRequired, NumberRange, Length, EqualTo
+from wtforms.validators import InputRequired, NumberRange, Length, EqualTo, ValidationError
 
 ALL_CATEGORY = [
     ("none", "None"), ("appliances", "Appliances"),
@@ -151,3 +152,22 @@ class AddProductForm(FlaskForm):
     discount = IntegerField("Discount", default=0, validators=[InputRequired() ,NumberRange(min=0, max=99)])
     description = TextAreaField("Product Description", validators=[InputRequired()])
     image = FileField("Image", validators=[FileRequired() ,FileAllowed(['jpg', 'png', 'gif', 'jfif', 'webp', 'bmp', 'jpeg'])])
+
+    def validate_image(self, field):
+        """
+        """
+        size = 1024 * 1024 * 1  # 1MB maximum value
+        try: 
+            with Image.open(field.data.filename) as img:
+                width, height = img.size
+                if width * height > size:
+                    raise ValidationError("Image File Size Must Not Exceed 1MB")
+        except (OSError, FileNotFoundError, IOError):
+            return ValidationError("Not a Valid Image File")
+
+    def validate_price(self, field):
+        """"""
+        price = str(field.data)
+        price = price.split('.')
+        if len(price) == 2 and not (len(price[-1]) <= 2):
+            raise ValidationError("Error: More Than Two Decimal Places")

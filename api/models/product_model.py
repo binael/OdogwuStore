@@ -50,7 +50,7 @@ class Product(BaseModel):
         # Set the value of self.id
         p_array = name.split(' ')
         total = 0
-        for i in len(p_array):
+        for i in range(len(p_array)):
             total = len(p_array[i])
             if (i >= 5) or (total > 25):
                 break
@@ -62,7 +62,7 @@ class Product(BaseModel):
             self.link = p_array[0]
             for j in range(1, i):
                 self.link += "-" + p_array[j]
-        self.link = self.link + str(uuid4())[-5:]
+        self.link = self.link + "-" + str(uuid4())[-5:]
 
         # Format sub-category
         catRegex = re.findall(r'[a-zA-Z]+', sub_category)

@@ -1,7 +1,12 @@
 """
 """
 
-from flask import Blueprint, render_template, request, redirect, url_for, session
+# Test Imports
+from werkzeug.utils import secure_filename
+import os
+# End of test imports
+
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from flask_login import login_user, current_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -9,6 +14,7 @@ from cloudinary.uploader import upload
 
 from api.utils.flaskforms import SellerLoginForm, SubscribeForm, SellerSignUpForm
 from api.utils.flaskforms import COUNTRY_CODES
+from api.utils.helpers import validate_url
 from api.models import Seller
 
 seller_auth = Blueprint("seller_auth", __name__,
@@ -30,12 +36,18 @@ def login():
         if user and check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember_me.data)
             session["role"] = "seller"
+
+            if "next" in session and session.get("next") != None and validate_url(session.get("next")):
+                return redirect(session.get("next"))
+
             return redirect(url_for("seller.homepage"))
-        return render_template("loginPage.html", form=form, subscribe=subscribe, name=True)
+        flash("Invalid Email or Password")
+        return render_template("loginPage.html", form=form, subscribe=subscribe)
 
     if request.method == "POST" and subscribe.validate_on_submit():
         return redirect(url_for('seller_auth.login'))
 
+    session["next"] = request.args.get("next")
     return render_template("loginPage.html", form=form, subscribe=subscribe)
 
 @seller_auth.route("/sign_up", strict_slashes=False, methods=["GET", "POST"])
@@ -44,10 +56,14 @@ def sign_up():
 	"""
     subscribe = SubscribeForm()
     form = SellerSignUpForm()
+
     if request.method == "POST" and form.validate_on_submit():
-        user = Seller.query.filter_by(email=form.email.data.lower()).first()
-        if user:
-            return "This seller email already exists"
+        repeat_user = Seller.query.filter_by(email=form.email.data.lower()).first()
+        repeat_company = Seller.query.filter_by(name=form.name.data).first()
+        if repeat_user or repeat_company:
+            flash("Email Aready Exists")
+            return render_template("signPage.html", form=form, subscribe=subscribe)
+
         full_address = form.address.street.data + ', '
         full_address += form.address.city.data + ', '
         full_address += form.address.state.data + ', '
@@ -56,8 +72,8 @@ def sign_up():
         upload_result = upload(form.image.data, folder="/o-store/seller")
         image_file = upload_result["secure_url"]
 
-        firstname = form.firstname.data.lower()
-        lastname = form.lastname.data.lower()
+        firstname = form.firstname.data.title()
+        lastname = form.lastname.data.title()
         email = form.email.data.lower()
 
         user = Seller(firstname=firstname, lastname=lastname,
@@ -68,10 +84,12 @@ def sign_up():
                       image=image_file
 		)
         user.add()
+
         return redirect(url_for("seller_auth.login"))
     if request.method == "POST" and subscribe.validate_on_submit():
-        return redirect(url_for('seller_auth.login'))
+        return redirect(url_for('seller_auth.sign_up'))
     return render_template("signPage.html", form=form, subscribe=subscribe)
+
 
 @seller_auth.route("/logout", strict_slashes=False, methods=["GET", "POST"])
 # @login_required

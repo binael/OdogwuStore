@@ -14,11 +14,15 @@
 <form action="/o-seller/login" class="login-form" id="login-form" method="POST">
 	{{ form.csrf_token }}
 	<h1>LOGIN TO YOUR ODOGWU<span>S</span>ELLER ACCOUNT</h1>
-	{% if name %}
-	<div class="login error">
-		<p class="error-msg">Invalid Email or Password</p>
-	</div>
-	{% endif %}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="login error">
+				{% for message in messages %}
+					<p class="error-msg">{{ message }}</p>
+				{% endfor %}
+			</div>
+		{% endif %}
+	{% endwith %}
 	<div class="login">
 		<label for="{{ form.email.id }}" class="form-text">EMAIL ADDRESS</label>
 		{{ form.email(class="form-control", placeholder="Email Address") }}

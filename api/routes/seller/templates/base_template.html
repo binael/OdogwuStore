@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=1200, initial-scale=0.1">
+		<meta name="viewport" content="width=1280, initial-scale=0.1">
 		<meta name="description" content="E-Commerce Website">
 		<meta keywords="shop, purchase, pay">
 		<meta name="author" content="Binael Nchekwube">
@@ -31,7 +31,7 @@
 			<section class="main-header">
 				<a class="logo" href="{{ url_for('seller.homepage') }}">Odogwu<span>S</span>eller  <i class='bx bxs-home' ></i></a>
 				{% block userName %}
-					<a class="username" href=""><i class='bx bxs-user'></i> Hi, {{ user.firstname.title() }}</a>
+					<a class="username" href=""><i class='bx bxs-user'></i> Hi, {{ user.firstname }}</a>
 				{% endblock %}
 				<div class="user-box">
 					{% block userOption %}

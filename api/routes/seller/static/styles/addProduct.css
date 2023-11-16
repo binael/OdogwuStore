@@ -155,6 +155,7 @@
 	margin-top: 0;
 	text-align: justify;
 	padding: 8px;
+	text-transform: none;
 }
 
 .product-image {

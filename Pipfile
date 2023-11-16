@@ -28,6 +28,7 @@ werkzeug = "==3.0.1"
 wtforms = "==3.1.1"
 cloudinary = "*"
 psycopg2-binary = "*"
+pillow = "*"
 
 [dev-packages]
 

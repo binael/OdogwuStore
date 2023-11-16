@@ -24,4 +24,4 @@ class Configuration:
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
     # Uploaded Image Url
-    UPLOADED_PHOTOS_DEST = os.environ.get("IMAGE_URL")
+    # UPLOADED_PHOTOS_DEST = os.environ.get("IMAGE_URL")
