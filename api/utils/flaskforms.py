@@ -64,7 +64,7 @@ COUNTRY_CODES = {
 }
 
 COUNTRY = [(key, value.get("country")) for key, value in COUNTRY_CODES.items()]
-CURRENCY = [(value.get("country_code"), value.get("currency")) for value in COUNTRY_CODES.values()]
+CURRENCY = [(value.get("currency_code"), value.get("currency")) for value in COUNTRY_CODES.values()]
 
 class SubscribeForm(FlaskForm):
     """_summary_
@@ -146,7 +146,8 @@ class AddProductForm(FlaskForm):
     category = SelectField("Category", choices=ALL_CATEGORY[1:])
     sub_category = StringField("Sub Category", validators=[InputRequired()])
     name = StringField("Product Name", validators=[InputRequired()])
-    total_stock = IntegerField("Total Stock", validators=[InputRequired(), NumberRange()])
+    total_stock = IntegerField("Total Stock", validators=[InputRequired(), NumberRange(min=1)])
+    stock_remaining = IntegerField("Stock Remaining")
     currency = SelectField("Currency", choices=CURRENCY)
     price = DecimalField('Product Price', places=2, validators=[InputRequired(), NumberRange(min=0.01)])
     discount = IntegerField("Discount", default=0, validators=[InputRequired() ,NumberRange(min=0, max=99)])
@@ -154,8 +155,17 @@ class AddProductForm(FlaskForm):
     image = FileField("Image", validators=[FileRequired() ,FileAllowed(['jpg', 'png', 'gif', 'jfif', 'webp', 'bmp', 'jpeg'])])
 
     def validate_image(self, field):
-        """
-        """
+        """_summary_
+
+		Args:
+			field (_type_): _description_
+
+		Raises:
+			ValidationError: _description_
+
+		Returns:
+			_type_: _description_
+		"""
         size = 1024 * 1024 * 1  # 1MB maximum value
         try: 
             with Image.open(field.data.filename) as img:
@@ -166,7 +176,14 @@ class AddProductForm(FlaskForm):
             return ValidationError("Not a Valid Image File")
 
     def validate_price(self, field):
-        """"""
+        """_summary_
+
+		Args:
+			field (_type_): _description_
+
+		Raises:
+			ValidationError: _description_
+		"""
         price = str(field.data)
         price = price.split('.')
         if len(price) == 2 and not (len(price[-1]) <= 2):

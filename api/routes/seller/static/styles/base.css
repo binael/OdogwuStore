@@ -118,10 +118,13 @@ li {
 
 /* - Start of style for filter - */
 .filter {
-	margin-top: 5px;
+	padding-top: 5px;
 	width: 100%;
 	padding-bottom: 5px;
-	border-bottom:  rgb(245, 233, 211) 1px solid;
+	border-bottom:  rgb(160, 160, 151) 5px solid;
+	background-color: white;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 .search-form {
 	display: flex;

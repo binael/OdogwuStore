@@ -71,6 +71,7 @@ def sign_up():
 
         upload_result = upload(form.image.data, folder="/o-store/seller")
         image_file = upload_result["secure_url"]
+        # image_file = "images"
 
         firstname = form.firstname.data.title()
         lastname = form.lastname.data.title()

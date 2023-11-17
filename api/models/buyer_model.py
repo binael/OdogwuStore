@@ -21,6 +21,7 @@ class Buyer(UserMixin, BaseModel):
     phone = db.Column(db.String(30), unique=True, nullable=False)
     address = db.Column(db.String(240))
     image = db.Column(db.String(240))
+    email_activated =db.Column(db.Boolean, default=False, nullable=False)
 
     favorites = db.relationship("Favorite", backref="buyers", lazy=True)
     purchases = db.relationship("Purchase", backref="buyers", lazy=True)

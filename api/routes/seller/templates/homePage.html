@@ -5,5 +5,56 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/home.css') }}">
 {% endblock %}
-
 {% block non_user %}{% endblock %}
+
+{% block main %}
+{% if not products %}
+<div class="empty-box">
+	<div class="no-product-found">
+		<p>No Product Found</p>
+	</div>
+	<a href="{{ url_for('seller.add') }}" class="new-product">Add Product</a>
+</div>
+{% else %}
+	<h1 class="page-header">All Products</h1>
+	<div class="main">
+		{% for product in products %}
+			<a class="each-product" href="{{ url_for('seller.product', link='product.link') }}">
+				<section class="product-image">
+					<div class="image-container">
+						<img src="{{ product.image }}" alt="{{ product.name.split(' ')[0] }}" class="image-box">
+					</div>
+				</section>
+				<section class="detail-edit">
+					<table>
+						<tr class="row-name">
+							<th>Name</th>
+							<td>{{ product.name if product.name|length < 22 else product.name[:20] + "..." }}</td>
+						</tr>
+						<tr>
+							<th>Category</th>
+							<td>{{ product.category if product.category|length < 20 else product.category[:20] + "..." }}</td>
+						</tr>
+						<tr>
+							<th>Price</th>
+							<td><span>{{ product.currency }}</span>{{ product.price }}</td>
+						</tr>
+						<tr>
+							<th>Remaining Stock</th>
+							<td>{{ product.stock_remaining }}</td>
+						</tr>
+						<tr>
+							<th>Amount Sold</th>
+							<td>{{ product.total_stock - product.stock_remaining }}</td>
+						</tr>
+						<tr>
+							<th>Discount</th>
+							<td>{{ product.discount }}</td>
+						</tr>
+					</table>
+				</section>
+			</a>
+		{% endfor %}
+	</div>
+	{% endif %}
+{% endblock %}

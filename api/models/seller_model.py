@@ -23,6 +23,7 @@ class Seller(UserMixin, BaseModel):
     address = db.Column(db.String(240))
     bio = db.Column(db.String(240))
     image = db.Column(db.String(240), nullable=False)
+    email_activated =db.Column(db.Boolean, default=False, nullable=False)
 
     products = db.relationship('Product', backref='sellers', lazy=True)
 
