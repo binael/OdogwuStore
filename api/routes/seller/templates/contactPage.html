@@ -1,0 +1,86 @@
+{% extends 'base_template.html' %}
+
+{% block title %} o-seller Login {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/contact.css') }}">
+{% endblock %}
+
+{% block userName %}{% endblock %}
+{% block userOption %}{% endblock %}
+{% block user_filter %}{% endblock %}
+
+{% block main %}
+<form action="{{ url_for('seller.contact_us') }}" class="contact-form" id="contact-form" method="POST" enctype="multipart/form-data">
+	{{ contact.csrf_token }}
+	<h1>CONTACT US</h1>
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="contact flashes">
+					{% for message in messages %}
+						<p class="flash-text">{{ message }}</p>
+					{% endfor %}
+			</div>
+		{% endif %}
+	{% endwith %}
+	<div class="contact multiple-box">
+		<div class="my-username">
+			<label for="{{ contact.firstname.id }}" class="form-text">FIRST NAME</label>
+			{{ contact.firstname(class="form-control", placeholder="First Name") }}
+			<ul>
+				{% for error in contact.firstname.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="my-username">
+			<label for="{{ contact.lastname.id }}" class="form-text">LAST NAME</label>
+			{{ contact.lastname(class="form-control", placeholder="Last Name") }}
+			<ul>
+				{% for error in contact.lastname.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="contact">
+		<label for="{{ contact.email.id }}" class="form-text">EMAIL ADDRESS</label>
+		{{ contact.email(class="form-control", placeholder="Email Address") }}
+		<ul>
+			{% for error in contact.email.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="contact">
+		<label for="{{ contact.topic.id }}" class="form-text">SUBJECT/TOPIC</label>
+		{{ contact.topic(class="form-control", placeholder="Enquiry for discount") }}
+		<ul>
+			{% for error in contact.topic.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="contact">
+		<label for="{{ contact.description.id }}" class="form-text">DESCRIPTION</label>
+		{{ contact.description(class="form-control description", placeholder="A description about the problem") }}
+		<ul>
+			{% for error in contact.description.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="contact">
+		<label for="{{ contact.image.id }}" class="form-text">UPLOAD IMAGE</label>
+		{{ contact.image(class="form-control image-file", placeholder="Upload Image") }}
+		<ul>
+			{% for error in contact.image.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<button type="submit" form="contact-form" value="Submit" class="contact-submit">Submit</button>
+</form>
+{% endblock %}

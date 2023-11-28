@@ -1,6 +1,7 @@
 from flask import Flask, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_mail import Mail
 
 import cloudinary
 import os
@@ -8,6 +9,7 @@ import os
 from api.config import Configuration
 
 db = SQLAlchemy()
+mail = Mail()
 
 cloudinary.config(
     cloud_name = os.environ.get("CLOUD_NAME"),
@@ -29,6 +31,9 @@ def create_app():
     app.config.from_object(Configuration)
     #deactivate auto sort for json keys
     app.json.sort_keys = False
+
+    # Initialize flask mail
+    mail.init_app(app)
 
     # Initialize db
     db.init_app(app)

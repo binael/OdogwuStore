@@ -1,0 +1,158 @@
+{% extends 'base_template.html' %}
+
+{% block title %} o-seller Login {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/profile.css') }}">
+{% endblock %}
+
+{% block non_user %}{% endblock %}
+{% block user_filter %}{% endblock %}
+
+
+{% block main %}
+<form action="{{ url_for('seller.profile') }}" class="profile-form" id="profile-form" method="POST" enctype="multipart/form-data">
+	{{ profile.csrf_token }}
+	{{ profile.address.csrf_token }}
+	<h1>UPDATE YOUR ODOGWU<span>S</span>ELLER ACCOUNT</h1>
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class=" profile flashes">
+					{% for message in messages %}
+						<p class="flash-text">{{ message }}</p>
+					{% endfor %}
+			</div>
+		{% endif %}
+	{% endwith %}
+	<div class="image-box">
+		{{ profile.image(class="image-data") }}
+		<img src="{{ profile.image.data }}" alt="Profile Image" class="image-file">
+		<ul>
+			{% for error in profile.image.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			 {% endfor %}
+		</ul>
+	</div>
+	<div class="profile section-detail">
+		<p class="detail">Login Information</p>
+	</div>
+	<div class="profile">
+		<label for="{{ profile.email.id }}" class="form-text">EMAIL ADDRESS</label>
+		{{ profile.email(class="form-control", placeholder="Email Address") }}
+		<ul>
+			{% for error in profile.email.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="profile section-detail">
+		<p class="detail">Personal Information</p>
+	</div>
+	<div class="profile multiple-box">
+		<div class="my-username">
+			<label for="{{ profile.firstname.id }}" class="form-text">FIRST NAME</label>
+			{{ profile.firstname(class="form-control", placeholder="First Name") }}
+			<ul>
+				{% for error in profile.firstname.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="my-username">
+			<label for="{{ profile.lastname.id }}" class="form-text">LAST NAME</label>
+			{{ profile.lastname(class="form-control", placeholder="Last Name") }}
+			<ul>
+				{% for error in profile.lastname.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="profile">
+		<label for="{{ profile.address.phone.id }}" class="form-text">PHONE NUMBER</label>
+		{{ profile.address.phone(class="form-control", placeholder="+44858...") }}
+		<ul>
+			{% for error in profile.address.phone.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div class="profile section-detail">
+		<p class="detail">Company Information</p>
+	</div>
+	<div class="profile">
+		<label for="{{ profile.name.id }}" class="form-text">COMPANY NAME</label>
+		{{ profile.name(class="form-control", placeholder="Company Name") }}
+		<ul>
+			{% for error in profile.name.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="profile">
+		<label for="{{ profile.website.id }}" class="form-text">WEBSITE</label>
+		{{ profile.website(class="form-control", placeholder="https://www.companyaddress.com") }}
+		<ul>
+			{% for error in profile.website.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="profile multiple-box">
+		<div class="address">
+			<label for="{{ profile.address.country.id }}" class="form-text">COUNTRY</label>
+			{{ profile.address.country(class="form-control") }}
+			<ul>
+				{% for error in profile.address.country.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="address">
+			<label for="{{ profile.address.state.id }}" class="form-text">STATE</label>
+			{{ profile.address.state(class="form-control", placeholder="State") }}
+			<ul>
+				{% for error in profile.address.state.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="address">
+			<label for="{{ profile.address.city.id }}" class="form-text">CITY</label>
+			{{ profile.address.city(class="form-control", placeholder="City") }}
+			<ul>
+				{% for error in profile.address.city.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="profile">
+		<label for="{{ profile.address.street.id }}" class="form-text">STREET</label>
+		{{ profile.address.street(class="form-control", placeholder="Street Number, Street Name...") }}
+		<ul>
+			{% for error in profile.address.street.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="profile">
+		<label for="{{ profile.bio.id }}" class="form-text">BIO / DESCRIPTION</label>
+		{{ profile.bio(class="form-control bio", placeholder="A description about the company") }}
+		<ul>
+			{% for error in profile.bio.errors %}
+				<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<button type="submit" form="profile-form" value="Submit" class="profile-submit">Submit</button>
+</form>
+
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('.static', filename='js/profile.js') }}"></script>
+{% endblock %}

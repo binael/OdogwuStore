@@ -1,0 +1,47 @@
+.sign-in, .sign-up {
+	display: none;
+}
+
+.dropdown {
+	right: 10%;
+}
+
+.main-body {
+	font-family: 'Arial', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f8f8f8;
+	color: #333;
+}
+
+.page-header {
+	margin-top: 1%;
+	width: 100%;
+	text-align: center;
+	font-family: 'Teko', 'Poppins', sans-serif;
+	color: rgba(0, 0, 0, 0.2)
+}
+
+.guideline {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+	color: #333;
+}
+
+p {
+	line-height: 1.6;
+}
+
+.step {
+	margin-bottom: 20px;
+}
+
+.step a h3, .step h3 {
+	color: #007bff;
+}

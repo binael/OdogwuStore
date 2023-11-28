@@ -23,5 +23,15 @@ class Configuration:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
-    # Uploaded Image Url
-    # UPLOADED_PHOTOS_DEST = os.environ.get("IMAGE_URL")
+    # Flask Mail Configurations
+    MAIL_SERVER = "smtp.gmail.com"
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USE_SSL = False
+    MAIL_DEBUG = True
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    MAIL_DEFAULT_SENDER = "O-STORE"
+    MAIL_MAX_EMAILS = None
+    MAIL_SUPPRESS_SENDER = False
+    MAIL_ASCII_ATTACHMENTS = False

@@ -17,13 +17,13 @@
 		{% with messages = get_flashed_messages() %}
 			{% if messages %}
 				<div class="flashes">
-					<a class="flash-link flash-home" href=""><i class='bx bxs-caret-left-square'></i><p>Go to Home</p></a>
+					<a class="flash-link flash-home" href="{{ url_for('seller.homepage') }}"><i class='bx bxs-caret-left-square'></i><p>Go to Home</p></a>
 					<ul>
 						{% for message in messages %}
 							<li class="flash-text">{{ message }}</li>
 						{% endfor %}
 					</ul>
-					<a class="flash-link flash-product" href=""><p>Check Product</p><i class='bx bxs-caret-right-square'></i></a>
+					<a class="flash-link flash-product" href="{{ url_for('seller.product', link=product.link)}}"><p>Check Product</p><i class='bx bxs-caret-right-square'></i></a>
 				</div>
 			{% endif %}
 		{% endwith %}
@@ -32,11 +32,11 @@
 			<section>
 				<div class="form-section product-category">
 					<label for="{{ form.category.id }}" class="form-text">PRODUCT CATEGORY</label>
-					{{ form.category(class="form-control") }}
+					{{form.category(class="form-control") }}
 					<ul>
 						{% for error in form.category.errors %}
 							<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
-						{% endfor %}
+					 	{% endfor %}
 					</ul>
 				</div>
 				<div class="form-section product-sub_category">

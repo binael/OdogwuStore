@@ -30,6 +30,7 @@ class Product(BaseModel):
 
     favorites = db.relationship("Favorite", backref="products", lazy=True)
     purchases = db.relationship("Purchase", backref="products", lazy=True)
+    reviews = db.relationship("Review", backref="products", lazy=True)
 
     def __init__(self, category, sub_category, name, total_stock,
                  stock_remaining, price, description, image, currency,

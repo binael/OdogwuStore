@@ -103,7 +103,6 @@ li {
 }
 
 .user-box a {
-	padding: 10px;
 	box-sizing: content-box;
 	padding: 4px;
 	border: 2px solid;
@@ -115,6 +114,46 @@ li {
 	border-color: var(--link-hover-color);
 }
 /* - End of Style for main-header - */
+
+.help-dropdown {
+	position: relative;
+}
+
+.dropdown {
+	display: none;
+	position: absolute;
+	right: 12%;
+	width: 180px;
+	background-color: var(--bg-color);
+	border-radius: 30px;
+	padding: 15px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.toggle_display {
+	display: block
+}
+
+.dropdown li {
+	margin: 0;
+	padding: 3px 0;
+}
+
+.dropdown li a {
+	color: white;
+	margin: 0;
+	display: block;
+	text-align: center;
+	font-size: 0.9em;
+	text-transform: none;
+	border: 2px solid;
+	border-color: var(--bg-color);
+	border-radius: 8px;
+}
+
+.dropdown li a:hover {
+	border-color: var(--link-hover-color);
+}
 
 /* - Start of style for filter - */
 .filter {
@@ -132,11 +171,16 @@ li {
 	align-items: center;
 }
 
-.search-form div {
-	width: 25%;
+.all-category {
+	width: 30%;
 }
 
-.category-select, .sub_category, .product {
+.product-search {
+	width: 60%;
+	margin-left: -10%;
+}
+
+.category-select, .product {
 	border-radius: 8px;
 }
 
@@ -144,15 +188,11 @@ li {
 	width: 75%;
 }
 
-.sub_category {
-	width: 80%;
-}
-
 .category-select {
 	width: 85%;
 }
 
-.category-select, .sub_category, .product, .submit {
+.category-select, .product, .submit {
 	height: 2.5rem;
 }
 
@@ -160,8 +200,8 @@ li {
 	font-family: 'Teko', 'Poppins', sans-serif;
 }
 
-.submit, .type, .product-search {
-	margin-left: -8%;
+.submit {
+	margin-left: -15%;
 }
 
 .category-select option {

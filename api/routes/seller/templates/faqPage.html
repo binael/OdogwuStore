@@ -1,0 +1,71 @@
+{% extends 'base_template.html' %}
+
+{% block title %} o-seller Login {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/faq.css') }}">
+{% endblock %}
+
+{% block userName %}{% endblock %}
+{% block userOption %}{% endblock %}
+{% block user_filter %}{% endblock %}
+
+{% block main %}
+<div class="main">
+    <div class="faq-section">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <ul class="faq-list">
+            <li>
+                <div class="faq-question" onclick="toggleAnswer(this)">How can I become a seller partner on your platform?</div>
+                <div class="faq-answer">To become a seller partner, you can visit our website and look for the "Seller Sign Up Page". Follow the provided instructions to register and set up your seller account.</div>
+            </li>
+            <li>
+                <div class="faq-question" onclick="toggleAnswer(this)">What documents are required for seller registration?</div>
+                <div class="faq-answer">The required documents may include your business registration details, tax identification, bank account information, and product details. Specific document requirements will be outlined during the registration process.</div>
+            </li>
+            <li>
+                <div class="faq-question" onclick="toggleAnswer(this)">How do I add products to my seller account?</div>
+                <div class="faq-answer">Once registered, you can log in to your seller dashboard and find an option to add products. Follow the prompts to provide product details, including descriptions, prices, and images.</div>
+            </li>
+            <li>
+                <div class="faq-question" onclick="toggleAnswer(this)">What fees are associated with selling on your platform?</div>
+                <div class="faq-answer">Our platform charges a commission fee for each successful sale. Additionally, there may be other fees, such as transaction fees or subscription fees for certain services. Refer to our fee structure for detailed information.</div>
+            </li>
+			<li>
+                <div class="faq-question" onclick="toggleAnswer(this)">How do I manage orders and fulfill customer requests?</div>
+                <div class="faq-answer">Your seller dashboard will provide tools for managing orders. You can view and process orders, update order status, and communicate with customers. Ensure timely order fulfillment to maintain a positive seller rating.</div>
+            </li>
+			<li>
+                <div class="faq-question" onclick="toggleAnswer(this)">Is there a review process for my products before they are listed?</div>
+                <div class="faq-answer">Yes, we may have a review process to ensure that listed products meet our quality standards and comply with our policies. This process helps maintain a high standard of products on our platform.</div>
+            </li>
+			<li>
+                <div class="faq-question" onclick="toggleAnswer(this)">Can I offer discounts or promotions for my products?</div>
+                <div class="faq-answer">Yes, you can run promotions or offer discounts on your products. Check your seller dashboard for options to create promotional campaigns and attract more customers.</div>
+            </li>
+			<li>
+                <div class="faq-question" onclick="toggleAnswer(this)">How are payments processed for the products I sell?</div>
+                <div class="faq-answer">Payments are typically processed through our platform, and the proceeds are transferred to your registered bank account. Payment processing details, including payout schedules, can be found in your seller account settings.</div>
+            </li>
+			<li>
+                <div class="faq-question" onclick="toggleAnswer(this)">What marketing support is available for seller partners?</div>
+                <div class="faq-answer"> We offer various marketing tools and resources to help sellers promote their products, including featured listings, social media promotions, and advertising options. Explore your seller dashboard for available marketing features.</div>
+            </li>
+			<li>
+                <div class="faq-question" onclick="toggleAnswer(this)">How can I resolve issues or seek assistance as a seller?</div>
+                <div class="faq-answer">If you encounter any issues or need assistance, you can reach out to our seller support team through the support portal in your dashboard. We are here to help you with any concerns or inquiries you may have.</div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function toggleAnswer(element) {
+            var answer = element.nextElementSibling;
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+            } else {
+                answer.style.display = "block";
+            }
+        }
+    </script>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base_template.html' %}
+
+{% block title %} o-seller Login {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/guide.css') }}">
+{% endblock %}
+
+{% block userName %}{% endblock %}
+{% block userOption %}{% endblock %}
+{% block user_filter %}{% endblock %}
+
+{% block main %}
+<div class="main-body">
+
+	<h1 class="page-header">Seller Guidelines</h1>
+
+	<div class="guideline">
+		<p>Welcome to our platform! We're excited to have you as a seller. Follow these guidelines to get started:</p>
+
+		<div class="step">
+			<a href="{{ url_for('seller_auth.sign_up') }}"><h3>Step 1: Register as a Seller</h3></a>
+			<p>Visit our registration page and create a seller account. Provide the required information about your business and products.</p>
+		</div>
+
+		<div class="step">
+			<a href="{{ url_for('seller_auth.sign_up') }}"><h3>Step 2: Complete your Seller Profile</h3></a>
+			<p>Enhance your seller profile by adding detailed information about your business, logo, and a brief description. This helps build trust with customers.</p>
+		</div>
+
+		<div class="step">
+			<a href="{{ url_for('seller.add') }}"><h3>Step 3: Add Products to Your Store</h3></a>
+			<p>Use your seller dashboard to add products to your store. Include clear product descriptions, high-quality images, and accurate pricing information.</p>
+		</div>
+
+		<div class="step">
+			<h3>Step 4: Set Up Payment Methods</h3>
+			<p>Configure your preferred payment methods in the seller settings. This ensures smooth transactions with customers.</p>
+		</div>
+
+		<div class="step">
+			<h3>Step 5: Fulfill Orders Promptly</h3>
+			<p>Monitor your orders regularly and ensure timely order fulfillment. Provide shipping updates and communicate with customers when needed.</p>
+		</div>
+
+	</div>
+</div>
+
+{% endblock %}

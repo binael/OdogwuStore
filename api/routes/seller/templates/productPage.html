@@ -3,6 +3,146 @@
 {% block title %} o-sellers {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/home.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/product.css') }}">
 {% endblock %}
 {% block non_user %}{% endblock %}
+{% block user_filter %}{% endblock %}
+
+{% block main %}
+<div class="main-page">
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<div class="flashes">
+				<a class="flash-link" href="{{ url_for('seller.homepage') }}"><i class='bx bxs-caret-left-square'></i><p>Go to Home</p></a>
+				<ul>
+					{% for message in messages %}
+						<li class="flash-text">{{ message }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+	{% endwith %}
+	<form action="" class="product-form" id="product-form" enctype="multipart/form-data" method="POST">
+		{{ form.csrf_token }}
+		<div class="image-box">
+			{{ form.image(class="image-data") }}
+			<img src="{{ product.image }}" alt="Product Image" class="image-file">
+			<ul>
+				{% for error in form.image.errors %}
+					<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+				 {% endfor %}
+			</ul>
+		</div>
+		<div class="details">
+			<p class="product-name">{{ product.name|title }}</p>
+			<hr>
+			<div class="product-details">
+				<div class="detail-name">
+					<p class="name-value name-box">Category</p>
+					<p class="name-value value-box">{{ product.category }}</p>
+				</div>
+				<div class="detail-name">
+					<p class="name-value name-box">Sub Category</p>
+					<p class="name-value value-box">{{ product.sub_category }}</p>
+				</div>
+				<div class="detail-name">
+					<label for="{{ form.price.id }}" class="name-value name-box">Price</label>
+					<div class="value-box">
+						<p class="name-value currency-box">{{ product.currency }}</p>
+						{{ form.price(class="form-control name-value price-box", readonly=true) }}
+						<ul>
+							{% for error in form.price.errors %}
+								<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+								{% endfor %}
+						</ul>
+					</div>
+					<p id="edit-price" class="edit-form">EDIT</p>
+				</div>
+				<div class="detail-name">
+					<label for="{{ form.discount.id }}" class="name-value name-box">Discount</label>
+					<div class="value-box">
+						{{ form.discount(class="form-control name-value", readonly=true) }}
+						<ul>
+							{% for error in form.discount.errors %}
+								<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+							 {% endfor %}
+						</ul>
+					</div>
+					<p id="edit-discount" class="edit-form">EDIT</p>
+				</div>
+				<div class="detail-name">
+					<label for="{{ form.stock_remaining.id }}" class="name-value name-box">Stock Remaining</label>
+					<div class="value-box">
+						{{ form.stock_remaining(class="form-control name-value", readonly=true) }}
+						<ul>
+							{% for error in form.stock_remaining.errors %}
+								<li style="color: red; font-size: 0.8rem;">{{ error }}</li>
+								{% endfor %}
+						</ul>
+					</div>
+					<p id="edit-stock" class="edit-form">EDIT</p>
+				</div>
+				<div class="detail-name">
+					<p class="name-value name-box">Products Sold</p>
+					<p class="name-value value-box">{{ product.total_stock - product.stock_remaining }}</p>
+				</div>
+				<div class="detail-name">
+					<p class="name-value name-box">Total Rating</p>
+					<p class="name-value value-box">{{ rating.total_rating }}</p>
+				</div>
+				<div class="detail-name">
+					<p class="name-value name-box">Average Rating</p>
+					<p class="name-value value-box">{{ rating.average_rating }}/5</p>
+				</div>
+				<div class="detail-name">
+					<p class="name-value name-box">Likes</p>
+					<p class="name-value value-box">{{ rating.likes }}</p>
+			<button type="submit" class="submit-btn" form="product-form" name="submit-btn" value="submit-btn">Apply Changes</button>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+<div class="auxillary-page main-page">
+	<section class="auxillary-header">
+		<p class="aux-title" data-page="page1">REVIEWS</p>
+		<p class="aux-title selected" data-page="page2">DESCRIPTION</p>
+		<p class="aux-title" data-page="page3">PURCHASES</p>
+	</section>
+	<section class="auxillary-info">
+		<article class="info info-review" id="page1">
+			{% if not reviews %}
+				<div class="msg-empty">
+					<p>No Reviews For this Product</p>
+				</div>
+			{% else %}
+				{% for review in product.reviews %}
+					<div class="msg-review">
+						<p class="rev-name">{{ review.buyers.firstname }}</p>
+						<div class="rev-rating">
+							<p class="rev-desc">{{ review.products.description }}</p>
+							<p class="rev-rates" id="{{ review.rating }}">
+								<i class='bx bxs-star' id="star-1"></i>
+								<i class='bx bxs-star' id="star-2"></i>
+								<i class='bx bxs-star' id="star-3"></i>
+								<i class='bx bxs-star' id="star-4"></i>
+								<i class='bx bxs-star' id="star-5"></i>
+							</p>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</article>
+		<article class="info info-description" id="page2">
+			<div class="msg-empty">
+				<p>{{ product.description }}</p>
+			</div>
+		</article>
+		<article class="info info-purchase" id="page3"></article>
+	</section>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ url_for('.static', filename='js/product.js') }}"></script>
+{% endblock %}

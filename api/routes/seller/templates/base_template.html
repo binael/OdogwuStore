@@ -31,22 +31,31 @@
 			<section class="main-header">
 				<a class="logo" href="{{ url_for('seller.homepage') }}">Odogwu<span>S</span>eller  <i class='bx bxs-home' ></i></a>
 				{% block userName %}
-					<a class="username" href=""><i class='bx bxs-user'></i> Hi, {{ user.firstname }}</a>
+					<a id="username" class="username" href="{{ url_for('seller.profile') }}" title="Go To Edit Profile"><i class='bx bxs-user'></i> Hi, {{ user.firstname }}</a>
 				{% endblock %}
 				<div class="user-box">
 					{% block userOption %}
 						<a href="{{ url_for('seller.add') }}">Add Product</a>
-						<a>Recently Added</a>
-						<a href="#help" class="help"><i class='bx bxs-help-circle' ></i> Help <i class='bx bxs-chevron-down'></i></a>
-						<a href="/o-seller/logout" class="{{ url_for('seller_auth.logout') }}"><i class='bx bx-log-out' ></i> Logout</a>
+						<a href="{{ url_for('seller.recently_added') }}">Recently Added</a>
+						<a class="help"><i class='bx bxs-help-circle' ></i> Help <i class='bx bxs-chevron-down'></i></a>
+						<a href="{{ url_for('seller_auth.logout') }}" class="{{ url_for('seller_auth.logout') }}"><i class='bx bx-log-out' ></i> Logout</a>
 					{% endblock %}
 					{% block non_user %}
 					<a class="sign-in" href="{{ url_for('seller_auth.login') }}"> Sign In</a>
 					<a class="sign-up" href="{{ url_for('seller_auth.sign_up') }}"> Sign Up</a>
-					<a> Guides to Selling</a>
-					<a href="#help" class="help"><i class='bx bxs-help-circle' ></i> Help <i class='bx bxs-chevron-down'></i></a>
+					<a href="{{ url_for('seller.seller_guide') }}"> Guides to Selling</a>
+					<a class="help"><i class='bx bxs-help-circle' ></i> Help <i class='bx bxs-chevron-down'></i></a>
 					{% endblock %}
 				</div>
+			</section>
+
+			<section class="help-dropdown" id="help-dropdown">
+				<ul class="dropdown" id="dropdown">
+					<li><a href="{{ url_for('seller.faq') }}">FAQ</a></li>
+					<li><a href="{{ url_for('seller.about') }}">About Us</a></li>
+					<li><a href="{{ url_for('seller.contact_us') }}">Contact Us</a></li>
+					<li><a href="{{ url_for('seller.office') }}">Our Offices</a></li>
+				</ul>
 			</section>
 
 			{% block user_filter %}
@@ -57,10 +66,6 @@
 						<label for="{{ form.category.id }}">Category: </label>
 						{{ form.category(class="category-select") }}
 						</select>
-					</div>
-					<div class="type">
-						<label for="{{ form.sub_category.id }}">Sub Category: </label>
-						{{ form.sub_category(class="sub_category", placeholder="Phone Android") }}
 					</div>
 					<div class="product-search">
 						<label for="{{ form.product.id }}">Product Name: </label>
@@ -83,24 +88,24 @@
 			<section class="connect-us">
 				<h3>Connect With Us</h3>
 				<div class="social-media">
-					<a href="https://twitter.com/binaelnchekwube"><i class='bx bxl-twitter'></i></a>
-					<a href="https://web.facebook.com/nbinael"><i class='bx bxl-facebook-square'></i></i></a>
-					<a href="https://www.instagram.com/nbinael/"><i class='bx bxl-instagram-alt'></i></a>
-					<a href="https://wa.link/plwc0u"><i class='bx bxl-whatsapp-square'></i></a>
-					<a href="https://www.linkedin.com/in/binael-nchekwube-777001109"><i class='bx bxl-linkedin-square' ></i></a>
+					<a href="https://twitter.com/binaelnchekwube" target="_blank"><i class='bx bxl-twitter'></i></a>
+					<a href="https://web.facebook.com/nbinael" target="_blank"><i class='bx bxl-facebook-square'></i></i></a>
+					<a href="https://www.instagram.com/nbinael/" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+					<a href="https://wa.link/plwc0u" target="_blank"><i class='bx bxl-whatsapp-square'></i></a>
+					<a href="https://www.linkedin.com/in/binael-nchekwube-777001109" target="_blank"><i class='bx bxl-linkedin-square' ></i></a>
 				</div>
 			</section>
 			<section class="about-us">
 				<h3>About Us</h3>
 				<div class="about info">
-					<a class="faq" title="Frequently Asked Questions">FAQ</a>
-					<a class="about">About Us</a>
+					<a href="{{ url_for('seller.faq') }}" class="faq" title="Frequently Asked Questions">FAQ</a>
+					<a href="{{ url_for('seller.about') }}" class="about">About Us</a>
 				</div>
 			</section>
 			<section class="partner-us">
 				<h3>Partner With Us</h3>
 				<div class="partner info">
-					<a href="" class="partner-seller">Seller Partner</a>
+					<a href="{{ url_for('seller.seller_guide') }}" class="partner-seller">Seller Partner</a>
 					<a href="" class="partner-logistics">Logistics Partner</a>
 					<a href="" class="markerter">Markerting Partner</a>
 				</div>
@@ -118,6 +123,8 @@
 
 		<!-- jQuery cdn link-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<!-- jQuery custom script-->
+		<script src="{{ url_for('.static', filename='js/base.js') }}"></script>
 		{% block js %}{% endblock %}
 	</body>
 </html>

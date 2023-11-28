@@ -16,7 +16,7 @@
 	<a href="{{ url_for('seller.add') }}" class="new-product">Add Product</a>
 </div>
 {% else %}
-	<h1 class="page-header">All Products</h1>
+	<h1 class="page-header">Recently Added/Updated Products</h1>
 	<div class="main">
 		{% for product in products %}
 			<a class="each-product" href="{{ url_for('seller.product', link=product.link) }}">

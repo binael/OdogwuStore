@@ -25,7 +25,7 @@ class Buyer(UserMixin, BaseModel):
 
     favorites = db.relationship("Favorite", backref="buyers", lazy=True)
     purchases = db.relationship("Purchase", backref="buyers", lazy=True)
-
+    reviews = db.relationship("Review", backref="buyers", lazy=True)
 
     def __init__(self, email, firstname, lastname, phone, address, password):
         self.email = email

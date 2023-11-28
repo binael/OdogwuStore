@@ -1,0 +1,22 @@
+{% extends 'base_template.html' %}
+
+{% block title %} o-seller Login {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/about.css') }}">
+{% endblock %}
+
+{% block userName %}{% endblock %}
+{% block userOption %}{% endblock %}
+{% block user_filter %}{% endblock %}
+
+{% block main %}
+<div class="main">
+    <div class="about-us-section">
+        <h2 class="about-us-title">About Us</h2>
+        <p class="about-us-text">Our online store was founded in 2023 with the goal of providing customers with a wide range of high-quality products at competitive prices. We have been built from the ground up with customer satisfaction in mind, ensuring that each customer who shops with us will leave feeling satisfied. Our dedication to excellence is what sets us apart from the competition and what we believe will help us continue to grow and succeed in the ever-evolving online retail landscape.</p>
+        <p class="about-us-text">At OdogwuStore, we understand that it is important to be a responsible corporate citizen. That is why we source our products from reputable manufacturers who follow strict quality control guidelines and use eco-friendly materials. We are also committed to promoting sustainable practices and minimizing our environmental impact. This includes reducing packaging waste, optimizing energy usage, and implementing eco-friendly policies throughout our organization.</p>
+        <p class="about-us-text">If you have any further questions or would like to learn more about [Store Name], please do not hesitate to contact us. We look forward to the opportunity to serve you and provide you with a shopping experience that you will truly enjoy.</p>
+    </div>
+</div>
+{% endblock %}

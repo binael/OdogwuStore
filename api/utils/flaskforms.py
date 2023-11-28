@@ -10,6 +10,8 @@ from wtforms import (StringField, IntegerField, TelField,
                      BooleanField, FormField)
 from wtforms.validators import InputRequired, NumberRange, Length, EqualTo, ValidationError
 
+
+
 ALL_CATEGORY = [
     ("none", "None"), ("appliances", "Appliances"),
     ("computer and accessories", "Computer and Accessories"), ("fashion", "Fashion"),
@@ -81,7 +83,6 @@ class SellerSearchForm(FlaskForm):
 	Args:
 		FlaskForm (_type_): _description_
 	"""
-    sub_category = StringField("Sub Category")
     product = SearchField("Product Name")
     category = SelectField("Category", choices=ALL_CATEGORY)
 
@@ -188,3 +189,80 @@ class AddProductForm(FlaskForm):
         price = price.split('.')
         if len(price) == 2 and not (len(price[-1]) <= 2):
             raise ValidationError("Error: More Than Two Decimal Places")
+
+
+class UpdateProductForm(FlaskForm):
+    """_summary_
+
+	Args:
+		FlaskForm (_type_): _description_
+	"""
+    stock_remaining = IntegerField("Stock Remaining")
+    price = DecimalField('Product Price', places=2, validators=[InputRequired(), NumberRange(min=0.01)])
+    discount = IntegerField("Discount", default=0, validators=[InputRequired() ,NumberRange(min=0, max=99)])
+    image = FileField("Image", validators=[FileAllowed(['jpg', 'png', 'gif', 'jfif', 'webp', 'bmp', 'jpeg'])])
+
+    def validate_image(self, field):
+        """_summary_
+
+		Args:
+			field (_type_): _description_
+
+		Raises:
+			ValidationError: _description_
+
+		Returns:
+			_type_: _description_
+		"""
+        size = 1024 * 1024 * 1  # 1MB maximum value
+        try: 
+            with Image.open(field.data.filename) as img:
+                width, height = img.size
+                if width * height > size:
+                    raise ValidationError("Image File Size Must Not Exceed 1MB")
+        except (OSError, FileNotFoundError, IOError):
+            return ValidationError("Not a Valid Image File")
+
+    def validate_price(self, field):
+        """_summary_
+
+		Args:
+			field (_type_): _description_
+
+		Raises:
+			ValidationError: _description_
+		"""
+        price = str(field.data)
+        price = price.split('.')
+        if len(price) == 2 and not (len(price[-1]) <= 2):
+            raise ValidationError("Error: More Than Two Decimal Places")
+
+
+class ProfileForm(FlaskForm):
+    """_summary_
+
+	Args:
+		FlaskForm (_type_): _description_
+	"""
+    firstname = StringField("First Name", validators=[InputRequired()])
+    lastname = StringField("Last Name", validators=[InputRequired()])
+    email = EmailField("Email", validators=[InputRequired()])
+    name = StringField("Company Name", validators=[InputRequired()])
+    website = StringField("Website")
+    address = FormField(AddressForm)
+    bio = TextAreaField("Bio", validators=[InputRequired()])
+    image = FileField("Image", validators=[FileRequired() ,FileAllowed(['jpg', 'png', 'gif', 'jfif', 'webp', 'bmp', 'jpeg'])])
+
+
+class ContactForm(FlaskForm):
+    """_summary_
+
+	Args:
+		FlaskForm (_type_): _description_
+	"""
+    firstname = StringField("First Name", validators=[InputRequired()])
+    lastname = StringField("Last Name", validators=[InputRequired()])
+    email = EmailField("Email", validators=[InputRequired()])
+    topic = StringField("Topic" , validators=[InputRequired()])
+    description = TextAreaField("Description", validators=[InputRequired()])
+    image = FileField("Image", validators=[FileAllowed(['jpg', 'png', 'gif', 'jfif', 'webp', 'bmp', 'jpeg'])])

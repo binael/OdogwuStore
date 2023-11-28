@@ -12,6 +12,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from cloudinary.uploader import upload
 
+from api.service import subscribe_mail
+
 from api.utils.flaskforms import SellerLoginForm, SubscribeForm, SellerSignUpForm
 from api.utils.flaskforms import COUNTRY_CODES
 from api.utils.helpers import validate_url
@@ -44,7 +46,9 @@ def login():
         flash("Invalid Email or Password")
         return render_template("loginPage.html", form=form, subscribe=subscribe)
 
-    if request.method == "POST" and subscribe.validate_on_submit():
+
+    if subscribe.validate_on_submit() and request.method == 'POST':
+        subscribe_mail([subscribe.email.data])
         return redirect(url_for('seller_auth.login'))
 
     session["next"] = request.args.get("next")
@@ -54,6 +58,8 @@ def login():
 def sign_up():
     """_summary_
 	"""
+    if current_user.is_authenticated:
+        return redirect(url_for("seller.homepage"))
     subscribe = SubscribeForm()
     form = SellerSignUpForm()
 
@@ -85,9 +91,10 @@ def sign_up():
                       image=image_file
 		)
         user.add()
-
         return redirect(url_for("seller_auth.login"))
-    if request.method == "POST" and subscribe.validate_on_submit():
+
+    if subscribe.validate_on_submit() and request.method == 'POST':
+        subscribe_mail([subscribe.email.data])
         return redirect(url_for('seller_auth.sign_up'))
     return render_template("signPage.html", form=form, subscribe=subscribe)
 

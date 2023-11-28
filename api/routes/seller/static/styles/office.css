@@ -1,0 +1,34 @@
+.sign-in, .sign-up {
+	display: none;
+}
+
+.dropdown {
+	right: 10%;
+}
+
+.empty-box {
+	margin: 10% auto;
+	background-color: var(--bg-color);
+	width: 60%;
+	height: 200px;
+	color: #454545;
+	box-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 0px 0 #b9b9b9, 0 5px 0 rgba(125, 125, 125, 0.2), 0 6px 1px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.2), 0 0 4px white, 0 0px 3px white, 1px 1px 5px rgba(255, 155, 0, 0.37), 1px 1px 10px rgba(102, 60, 0, 0.5);
+	border-radius:20px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.no-product-found {
+	width: 80%;
+	height: 50%;
+	margin: auto;
+}
+
+.no-product-found p {
+	font-family: 'Teko', 'Poppins', sans-serif;
+	font-size: 4rem;
+	color: white;
+	text-align: center;
+}
