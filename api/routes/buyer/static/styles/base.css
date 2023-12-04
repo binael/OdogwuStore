@@ -54,6 +54,10 @@ li {
 	color: orangered;
 }
 
+.blur {
+	opacity: 0.2;
+}
+
 .other-services a:hover {
 	color: var(--link-hover-color);
 }
