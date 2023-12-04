@@ -1,0 +1,163 @@
+/* Body Design */
+body {
+	background-color: beige;
+}
+/* End of Body Design */
+
+/* Main Design */
+.main {
+	width: 95%;
+	margin: 2% auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Filter Section Design */
+.filter-section {
+	width: 20%;
+	background-color: white;
+}
+/* End of Filter Section Design */
+
+/* Product Section Design */
+.product-section {
+	width: 78%;
+	border: 1px solid white
+}
+
+.result-name {
+	width: 100%;
+	height: 30px;
+	background-color:  rgba(238, 131, 92, 0.6);
+	padding-left: 15px;
+	padding-top: 2px;
+	padding-right: 2px;
+}
+
+.result-text {
+	width: 100%;
+	height: 100%;
+	color: black;
+	font-weight: 500;
+}
+
+.empty-box {
+	margin: 10% auto;
+	background-color: rgb(238, 131, 92);
+	width: 60%;
+	height: 200px;
+	color: #454545;
+	box-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 0px 0 #b9b9b9, 0 5px 0 rgba(125, 125, 125, 0.2), 0 6px 1px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.2), 0 0 4px white, 0 0px 3px white, 1px 1px 5px rgba(255, 155, 0, 0.37), 1px 1px 10px rgba(102, 60, 0, 0.5);
+	border-radius:20px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.no-product-found {
+	width: 80%;
+	height: 50%;
+	margin: auto;
+}
+
+.no-product-found p {
+	font-family: 'Teko', 'Poppins', sans-serif;
+	font-size: 4rem;
+	color: white;
+	text-align: center;
+}
+
+.all-products {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.all-products::after {
+	content: "";
+	width: 50%;
+}
+
+.each-product {
+	margin-right: auto;
+	height: 60vh;
+	width: 24%;
+	background-color: white;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 15px;
+	margin-left: 5px;
+	padding: 10px;
+}
+
+.each-product:hover {
+	box-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 0px 0 #b9b9b9, 0 5px 0 rgba(125, 125, 125, 0.2), 0 6px 1px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.2), 0 0 4px white, 0 0px 3px white, 1px 1px 5px rgba(255, 155, 0, 0.37), 1px 1px 10px rgba(102, 60, 0, 0.5);
+}
+
+.product-image {
+	width: 100%;
+	height: 50%;
+}
+
+.image-box {
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+}
+
+.seller-name {
+	width: 100%;
+	height: 5%;
+	margin-top: 5px;
+}
+
+.seller-name-text {
+	color: rgb(187, 173, 173);
+	font-size: 0.6em;
+	font-weight: 500;
+}
+
+.product-name-box {
+	height: fit-content;
+	width: 100%;
+}
+
+.product-name-text {
+	color: black;
+	font-weight: 300;
+	font-size: 0.82em;
+}
+
+.product-price-box {
+	height: 6%;
+	width: 100%;
+}
+
+.product-price-text {
+	color: black;
+	font-weight: 500;
+	font-size: 0.9em;
+}
+
+.product-discount-box {
+	height: 6%;
+	width: 100%;
+}
+
+.product-discount-text {
+	color: rgb(201, 24, 24);
+	font-size: 0.8em;
+	font-weight: 400;
+}
+
+.product-discount-box span {
+	color: rgb(63, 57, 57);
+	font-size: 0.9em;
+	font-weight: 400;
+	text-decoration: line-through;
+	margin-right: 5px;
+}
+/* End of Product Section Design */

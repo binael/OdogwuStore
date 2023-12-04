@@ -11,17 +11,17 @@
 <main>
 	<section class="home" id="#home">
 		<nav class="category">
-			<a href="appliances">Appliances</a><hr>
-			<a href="computer-accessories">Computer and Accessories</a><hr>
-			<a href="fashion">Fashion</a><hr>
-			<a href="furniture">Furniture</a><hr>
-			<a href="games-toys">Games and Toys</a><hr>
-			<a href="groceries">Groceries</a><hr>
-			<a href="health-beauty">Health and Beauty</a><hr>
-			<a href="home-office">Home and Office</a><hr>
-			<a href="jewelries-watches">Jewelries and Watches</a><hr>
-			<a href="phones-tablets">Phones and Tablets</a><hr>
-			<a href="#other-categories">Other Categories</a>
+			<a href="{{ url_for('buyer.product', name='appliances') }}">Appliances</a><hr>
+			<a href="{{ url_for('buyer.product', name='computer-accessories') }}">Computer and Accessories</a><hr>
+			<a href="{{ url_for('buyer.product', name='fashion') }}">Fashion</a><hr>
+			<a href="{{ url_for('buyer.product', name='furniture') }}">Furniture</a><hr>
+			<a href="{{ url_for('buyer.product', name='games-toys') }}">Games and Toys</a><hr>
+			<a href="{{ url_for('buyer.product', name='groceries') }}">Groceries</a><hr>
+			<a href="{{ url_for('buyer.product', name='health-beauty') }}">Health and Beauty</a><hr>
+			<a href="{{ url_for('buyer.product', name='home-office') }}">Home and Office</a><hr>
+			<a href="{{ url_for('buyer.product', name='jewelries-watches') }}">Jewelries and Watches</a><hr>
+			<a href="{{ url_for('buyer.product', name='phones-tablets') }}">Phones and Tablets</a><hr>
+			<a href="{{ url_for('buyer.product', name='other-categories') }}">Other Categories</a>
 		</nav>
 		<div class="image-slide">
 			<!-- Slider main container -->

@@ -15,18 +15,18 @@ class Product(BaseModel):
     """
     __tablename__ = "product"
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    link = db.Column(db.String(480))
+    link = db.Column(db.String(600))
     seller_id = db.Column(db.String(40), db.ForeignKey('seller.id'))
     category = db.Column(db.String(80), nullable=False)
-    sub_category = db.Column(db.String(240), nullable=False)
+    sub_category = db.Column(db.String(320), nullable=False)
     name = db.Column(db.String(480), nullable=False)
     total_stock = db.Column(db.Integer, nullable=False)
     stock_remaining = db.Column(db.Integer, nullable=False)
     currency = db.Column(db.String(10), nullable=False)
     price = db.Column(db.Numeric(precision=15, scale=2), nullable=False)
     discount = db.Column(db.Integer, nullable=False)
-    description = db.Column(db.String(600), nullable=False)
-    image = db.Column(db.String(240), nullable=False)
+    description = db.Column(db.String(2400), nullable=False)
+    image = db.Column(db.String(320), nullable=False)
 
     favorites = db.relationship("Favorite", backref="products", lazy=True)
     purchases = db.relationship("Purchase", backref="products", lazy=True)
@@ -62,7 +62,7 @@ class Product(BaseModel):
         for word in catRegex:
             if word == "s":
                 self.sub_category += "s"
-            if i >= 1:
+            elif i >= 1:
                 self.sub_category += "-" + word
             else:
                 self.sub_category += word
@@ -74,7 +74,7 @@ class Product(BaseModel):
         format
         """
         my_dict = {
-            "id": self.id,
+            "id": f"{self.id}",
             "link": self.link,
             "name": self.name,
             "category": self.category,

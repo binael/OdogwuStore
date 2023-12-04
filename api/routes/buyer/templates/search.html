@@ -1,2 +1,52 @@
 {% extends 'base.html' %}
 {% block title %} Products Search {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='styles/search.css') }}">
+{% endblock %}
+
+{% block main %}
+<div class="main">
+	<section class="filter-section"></section>
+	<section class="product-section">
+		<div class="result-name">
+			<p class="result-text">{{ search_text }}</p>
+		</div>
+			{% if not products %}
+				<div class="empty-box">
+					<div class="no-product-found">
+						<p>No Product Found</p>
+					</div>
+				</div>
+			{% else %}
+				<div class="all-products">
+					{% for product in products %}
+						<a href="{{ url_for('buyer.product', name=product.link) }}" class="each-product">
+							<section class="product-image">
+								<img src="{{ product.image }}" alt="{{ product.name.split(' ')[0] }}" class="image-box">
+							</section>
+							<section class="seller-name">
+								<p class="seller-name-text"> Sold by {{ product.sellers.name if product.sellers.name|length < 30 else product.sellers.name[:30] + '...' }}</p>
+							</section>
+							<section class="product-name-box">
+								<p class="product-name-text">{{ product.name if product.name|length < 51 else product.name[:51] + '...' }}</p>
+							</section>
+							<section class="product-price-box">
+								<p class="product-price-text">{{ product.currency }} {{ discount_price(product.price, product.discount) }}</p>
+							</section>
+							{% if product.discount > 0 %}
+								<section class="product-discount-box">
+									<p class="product-discount-text"><span>{{product.currency}} {{product.price}}</span> -{{product.discount}}%</p>
+								</section>
+							{% endif %}
+							<section class="add-cart-box">
+								
+							</section>
+						</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+	</section>
+</div>
+{% endblock %}

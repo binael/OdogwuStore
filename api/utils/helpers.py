@@ -156,3 +156,19 @@ def get_address(full_address):
             "city": city,
             "street": street
             }
+
+def discount_price(price, discount=None):
+    """Calculate discounted price and format as string.
+
+    Args:
+        price (float): The original price.
+        discount (float, optional): The discount percentage.
+
+    Returns:
+        str: The formatted discounted price with commas.
+    """
+    if discount is None:
+        return "{:,.2f}".format(price)
+    else:
+        discounted_price = float(price) * (1 - float(discount) * 0.01)
+        return "{:,.2f}".format(discounted_price)

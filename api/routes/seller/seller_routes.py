@@ -1,6 +1,13 @@
 """
 """
 
+# Test modules
+import requests as req
+from api.utils.flaskforms import ALL_CATEGORY
+from random import randint
+from api import db
+from sqlalchemy import text
+
 from api.utils.flaskforms import SellerSearchForm, SubscribeForm, AddProductForm
 from api.utils.flaskforms import UpdateProductForm, ProfileForm, ContactForm
 from api.utils.flaskforms import COUNTRY_CODES
@@ -309,6 +316,9 @@ def contact_us():
 @seller.route("/seller_guide", strict_slashes=False, methods=["GET", "POST"])
 def seller_guide():
     """_summary_
+
+	Returns:
+		_type_: _description_
 	"""
     subscribe = SubscribeForm()
     if subscribe.validate_on_submit() and request.method == 'POST':
